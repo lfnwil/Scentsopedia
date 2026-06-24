@@ -1,0 +1,19 @@
+node_modules/
+database.sqlite3
+
+# Legacy hero/mission API kept locally for future adaptation.
+controllers/hero.controller.js
+controllers/mission.controller.js
+controllers/index.controller.js
+routers/hero.router.js
+routers/mission.router.js
+services/hero.service.js
+services/mission.service.js
+services/mock.service.js
+services/index.service.js
+repositories/hero.repository.js
+repositories/mission.repository.js
+public/heroes.html
+public/missions.html
+
+testRepositories.js

@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+header {
+    background-color: #31525b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    margin: 0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    flex-direction: row;
+    display: flex;
+}
+
+ul.liens li {
+    padding: 10px;
+    background-color: black;
+    margin: 5px;
+    border-radius: 4px;
+}
+
+main {
+    padding: 15px;
+    display: flex;
+}
+
+#fragrances-list {
+    display: block;
+}
+
+li {
+    padding: 10px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 4px;
+}
+
+.intro {
+    padding: 10px;
+}

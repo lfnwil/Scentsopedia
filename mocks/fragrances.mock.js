@@ -1,0 +1,28 @@
+export const fragrancesMocks = [
+  {
+    name: "Sauvage",
+    brandName: "Dior",
+    price: 80,
+    genre: "Homme",
+    description: "Un parfum frais et puissant.",
+    img: "https://www.example.com/sauvage.jpg",
+    topNoteName: "Bergamote",
+    heartNoteName: "Vanille",
+    baseNoteName: "Ambroxan",
+    accords: "Frais, Épicé, Boisé",
+    saison: "Été",
+  },
+  {
+    name: "Tubéreuse Astrale",
+    brandName: "Maison Crivelli",
+    price: 200,
+    genre: "Unisex",
+    description: "Une Tubéreuse gourmande et puissante.",
+    img: "https://fimgs.net/mdimg/dizajneri/m.3591.jpg",
+    topNoteName: "Canelle",
+    heartNoteName: "Tubéreuse",
+    baseNoteName: "Vanille",
+    accords: "Tubéreuse, Fleurs Blanches, Canelle",
+    saison: "Hiver",
+  },
+];
