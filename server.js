@@ -3,7 +3,7 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import sequelize from "./config/database.js";
-import { initializeFragranceMocks } from "./controllers/fragrance.controller.js";
+import { initializeFragranceMocks } from "./services/fragrance.service.js";
 import { logMiddleware } from "./middlewares/log.middleware.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import catalogRouter from "./routers/catalog.router.js";
