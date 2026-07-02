@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInUp, LinearTransition } from 'react-native-reanimated';
 
 import { colors } from '../theme';
@@ -21,9 +21,10 @@ function joinPreview(values?: string[] | null, limit = 3) {
 type FragranceCardProps = {
   fragrance: Fragrance;
   index: number;
+  onPress: (fragrance: Fragrance) => void;
 };
 
-export function FragranceCard({ fragrance, index }: FragranceCardProps) {
+export function FragranceCard({ fragrance, index, onPress }: FragranceCardProps) {
   const brand = fragrance.Brand?.name ?? fragrance.brandName ?? 'Maison inconnue';
   const status = fragrance.mainStatus
     ? statusLabels[fragrance.mainStatus] ?? fragrance.mainStatus
@@ -36,41 +37,48 @@ export function FragranceCard({ fragrance, index }: FragranceCardProps) {
       layout={LinearTransition.duration(220)}
       style={styles.card}
     >
-      <View style={styles.header}>
-        <View style={styles.titleGroup}>
-          <Text style={styles.brand} numberOfLines={1}>
-            {brand}
-          </Text>
-          <Text style={styles.name} numberOfLines={2}>
-            {fragrance.name}
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={`Voir le détail de ${fragrance.name}`}
+        onPress={() => onPress(fragrance)}
+        style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
+      >
+        <View style={styles.header}>
+          <View style={styles.titleGroup}>
+            <Text style={styles.brand} numberOfLines={1}>
+              {brand}
+            </Text>
+            <Text style={styles.name} numberOfLines={2}>
+              {fragrance.name}
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.metaRow}>
+          {fragrance.concentration ? (
+            <Text style={styles.meta}>
+              {fragrance.concentration}
+            </Text>
+          ) : null}
+          {fragrance.formatMl ? (
+            <Text style={styles.meta}>
+              {fragrance.formatMl} ml
+            </Text>
+          ) : null}
+          {status ? (
+            <Text style={styles.meta}>
+              {status}
+            </Text>
+          ) : null}
+        </View>
+
+        <View style={styles.familyBlock}>
+          <Text style={styles.familyLabel}>Familles</Text>
+          <Text style={styles.familyValue}>
+            {joinPreview(fragrance.olfactoryFamilies)}
           </Text>
         </View>
-      </View>
-
-      <View style={styles.metaRow}>
-        {fragrance.concentration ? (
-          <Text style={styles.meta}>
-            {fragrance.concentration}
-          </Text>
-        ) : null}
-        {fragrance.formatMl ? (
-          <Text style={styles.meta}>
-            {fragrance.formatMl} ml
-          </Text>
-        ) : null}
-        {status ? (
-          <Text style={styles.meta}>
-            {status}
-          </Text>
-        ) : null}
-      </View>
-
-      <View style={styles.familyBlock}>
-        <Text style={styles.familyLabel}>Familles</Text>
-        <Text style={styles.familyValue}>
-          {joinPreview(fragrance.olfactoryFamilies)}
-        </Text>
-      </View>
+      </Pressable>
     </Animated.View>
   );
 }
@@ -82,7 +90,13 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     borderRadius: 8,
     backgroundColor: colors.surface,
+    overflow: 'hidden',
+  },
+  pressable: {
     padding: 16,
+  },
+  pressed: {
+    opacity: 0.72,
   },
   header: {
     flexDirection: 'row',

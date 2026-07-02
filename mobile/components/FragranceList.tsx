@@ -9,18 +9,26 @@ type FragranceListProps = {
   fragrances: Fragrance[];
   isRefreshing: boolean;
   onRefresh: () => void;
+  onSelectFragrance: (fragrance: Fragrance) => void;
 };
 
 const INITIAL_ITEMS_TO_RENDER = 8;
 const MAX_ITEMS_TO_RENDER_PER_BATCH = 6;
 const RENDER_WINDOW_SIZE = 7;
 
-export function FragranceList({ fragrances, isRefreshing, onRefresh }: FragranceListProps) {
+export function FragranceList({
+  fragrances,
+  isRefreshing,
+  onRefresh,
+  onSelectFragrance,
+}: FragranceListProps) {
   return (
     <FlatList<Fragrance>
       data={fragrances}
       keyExtractor={(item) => String(item.id)}
-      renderItem={({ item, index }) => <FragranceCard fragrance={item} index={index} />}
+      renderItem={({ item, index }) => (
+        <FragranceCard fragrance={item} index={index} onPress={onSelectFragrance} />
+      )}
       initialNumToRender={INITIAL_ITEMS_TO_RENDER}
       maxToRenderPerBatch={MAX_ITEMS_TO_RENDER_PER_BATCH}
       windowSize={RENDER_WINDOW_SIZE}
